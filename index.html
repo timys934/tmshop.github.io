@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TMSHOP — магазин в мессенджере MAX</title>
-<meta name="description" content="TMSHOP — удобный магазин в мессенджере. Все цены указаны в чате MAX.">
+<meta name="description" content="TMSHOP — удобный магазин в мессенджере. Цены уточняйте в чате поддержки.">
 <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 <script src="https://unpkg.com/lucide@latest"></script>
 <style>
@@ -56,6 +56,7 @@
         <span class="text-lg font-black tracking-tight">TM<span class="text-sky-400">SHOP</span></span>
       </a>
       <div class="hidden sm:flex items-center gap-2">
+        <a href="#products" class="rounded-lg px-3 py-1.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white">Товары</a>
         <a href="#features" class="rounded-lg px-3 py-1.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white">Преимущества</a>
         <a href="#info" class="rounded-lg px-3 py-1.5 text-sm font-medium text-white/70 transition-colors hover:bg-white/10 hover:text-white">Информация</a>
         <a href="https://t.me/Prynik2015" target="_blank" rel="noopener" class="shine inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-sky-500 to-blue-700 px-4 py-1.5 text-sm font-semibold shadow-[0_8px_20px_-6px_rgba(37,99,235,0.6)] transition-all duration-200 hover:scale-[1.04] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.75)] active:scale-[0.98]">
@@ -69,7 +70,7 @@
   <div class="relative z-10 flex flex-1 flex-col items-center justify-center px-6 pt-14 pb-24 text-center">
     <div class="rise rise-1 inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-4 py-1.5 text-xs font-semibold tracking-wide text-white/90 backdrop-blur-sm">
       <i data-lucide="zap" class="h-4 w-4 text-sky-200"></i>
-      МАГАЗИН В МЕССЕНДЖЕРЕ MAX
+      МАГАЗИН В МЕССЕНДЖЕРЕ
     </div>
 
     <h1 class="rise rise-2 mt-6 max-w-3xl text-4xl font-black leading-tight tracking-tight sm:text-5xl" style="text-shadow:0 4px 30px rgba(15,61,120,.5)">
@@ -78,13 +79,13 @@
 
     <p class="rise rise-3 mt-4 max-w-2xl text-base leading-relaxed text-white/80 sm:text-lg">
       Быстрый и удобный магазин прямо в мессенджере. Оформляйте заказы в пару кликов —
-      <span class="font-semibold text-white">все цены указаны в чате MAX</span>.
+      <span class="font-semibold text-white">цены можно узнать в чате поддержки</span>.
     </p>
 
     <div class="rise rise-4 mt-8 flex flex-col items-center gap-3 sm:flex-row">
-      <a href="https://max.ru/join/QnQ8WtagyMRWXfCMUTCCNJhRqPQkKUhcb3LK-LIiM1g" target="_blank" rel="noopener" class="shine inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-700 px-8 py-3 text-base font-bold shadow-[0_8px_20px_-6px_rgba(37,99,235,0.6)] transition-all duration-200 hover:scale-[1.04] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.75)] active:scale-[0.98]">
+      <a href="https://t.me/Prynik2015" target="_blank" rel="noopener" class="shine inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-sky-500 to-blue-700 px-8 py-3 text-base font-bold shadow-[0_8px_20px_-6px_rgba(37,99,235,0.6)] transition-all duration-200 hover:scale-[1.04] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.75)] active:scale-[0.98]">
         <i data-lucide="message-circle" class="h-5 w-5"></i>
-        Узнать в чате MAX
+        Узнать цены в чате
       </a>
       <a href="#info" class="inline-flex w-full sm:w-auto items-center justify-center gap-2 rounded-xl border border-white/20 bg-white/20 px-8 py-3 text-base font-semibold text-white backdrop-blur-sm transition-all duration-200 hover:bg-white/30 hover:scale-[1.04] active:scale-[0.98]">
         <i data-lucide="info" class="h-5 w-5"></i>
@@ -94,8 +95,97 @@
 
     <p class="mt-6 flex items-center gap-1.5 text-xs text-white/70">
       <i data-lucide="lock" class="h-3.5 w-3.5"></i>
-      Все цены указаны в чате MAX — заходите по кнопке выше
+      Отвечаем быстро в Telegram — @Prynik2015
     </p>
+  </div>
+</section>
+
+<!-- ═══════════ ТОВАРЫ ═══════════ -->
+<section id="products" class="relative bg-gradient-to-b from-slate-100 to-slate-200 px-6 py-12 sm:px-10">
+  <div class="mx-auto max-w-5xl">
+    <div class="text-center reveal">
+      <span class="inline-flex items-center gap-1.5 rounded-full border border-blue-800/20 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-blue-600 shadow-sm">
+        <i data-lucide="package" class="h-3 w-3"></i> Каталог
+      </span>
+      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-slate-800 sm:text-4xl">Товары</h2>
+    </div>
+
+    <div class="mt-10 grid gap-6 sm:grid-cols-3">
+      <!-- ВСТАВЛЯЙТЕ СЮДА КАРТОЧКИ ТОВАРОВ, СГЕНЕРИРОВАННЫЕ В generator.html -->
+    </div>
+<!-- Карточка товара: Реклама в чатах и коментариях -->
+<article class="product-card">
+  <div class="product-card__image">
+    <img src="https://private-user-images.githubusercontent.com/312620583/683692033-e62e81a1-3459-4002-ba44-12e5aba4f927.jpg?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3OTI4NjMyNDcsIm5iZiI6MTc5Mjg2Mjk0NywicGF0aCI6Ii8zMTI2MjA1ODMvNjgzNjkyMDMzLWU2MmU4MWExLTM0NTktNDAwMi1iYTQ0LTEyZTVhYmE0ZjkyNy5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjYxMDI0JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI2MTAyNFQxNzI5MDdaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT0xZWVkNjJhODFhMTQyOGQ3ZDlmNmRlNGMzY2ZmMWZjY2Y3YzcwNjMyZDA1NTA0ZWE1MmMzMDgxM2E1Y2I0YmNiJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCZyZXNwb25zZS1jb250ZW50LXR5cGU9aW1hZ2UlMkZqcGVnIn0.ZUj9igCjvyw9R6SwnggBIvORQN03Ci9ZubVEBNBw4yE" alt="Реклама в чатах и коментариях">
+  </div>
+  <div class="product-card__body">
+    <h2 class="product-card__title">Реклама в чатах и коментариях</h2>
+    <p class="product-card__art">Артикул: 1</p>
+    <div class="product-card__desc">
+        <p>Много рекламы </p>
+        <p>большая аудитория </p>
+        <p>заказать через макс</p>
+    </div>
+    <a class="product-card__buy" href="https://max.ru/join/-sh-scDoOv2dq8boxJIqBKGX9Jd1U0BdAMsx_zBdpnE" target="_blank" rel="noopener">Купить</a>
+  </div>
+</article>
+
+<style>
+.product-card{
+  max-width:420px;
+  margin:16px auto;
+  background:#ffffff;
+  border:1px solid #b9ddff;
+  border-radius:16px;
+  overflow:hidden;
+  box-shadow:0 8px 24px rgba(47,143,224,.12);
+  font-family:"Segoe UI", Roboto, Arial, sans-serif;
+  color:#123a5c;
+}
+.product-card__image{
+  background:#eef6ff;
+  padding:0;
+}
+.product-card__image img{
+  display:block;
+  width:100%;
+  height:auto;
+}
+.product-card__body{
+  padding:18px 20px 22px;
+  background:linear-gradient(180deg,#ffffff,#eef6ff);
+}
+.product-card__title{
+  font-size:20px;
+  margin:0 0 6px;
+  color:#1a6bb0;
+}
+.product-card__art{
+  font-size:12px;
+  color:#4a7798;
+  margin:0 0 14px;
+}
+.product-card__desc p{
+  font-size:14px;
+  line-height:1.55;
+  margin:0 0 8px;
+}
+.product-card__buy{
+  display:inline-block;
+  margin-top:10px;
+  padding:11px 26px;
+  background:#2f8fe0;
+  color:#fff;
+  text-decoration:none;
+  border-radius:8px;
+  font-size:14px;
+  font-weight:700;
+  transition:.15s;
+}
+.product-card__buy:hover{
+  background:#1a6bb0;
+}
+</style>
   </div>
 </section>
 
@@ -130,8 +220,8 @@
         <span class="inline-flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br from-fuchsia-500 to-violet-600 shadow-lg">
           <i data-lucide="messages-square" class="h-5 w-5 text-white"></i>
         </span>
-        <h3 class="mt-4 text-lg font-bold text-slate-800">Все цены — в чате MAX</h3>
-        <p class="mt-2 text-sm leading-relaxed text-slate-500">Полный список товаров и все цены уже указаны в нашем чате MAX.</p>
+        <h3 class="mt-4 text-lg font-bold text-slate-800">Цены — в чате</h3>
+        <p class="mt-2 text-sm leading-relaxed text-slate-500">Актуальные цены и наличие уточняйте напрямую у поддержки в Telegram.</p>
       </div>
     </div>
   </div>
@@ -151,7 +241,7 @@
           <i data-lucide="folder-open" class="h-3 w-3"></i> Документы и связь
         </span>
         <h2 class="mt-3 text-3xl font-extrabold tracking-tight text-white sm:text-4xl">Важная информация</h2>
-        <p class="mt-2 text-sm text-white/70">Ознакомьтесь с документами или заходите в чат — <span class="font-semibold text-white">все цены указаны в чате MAX</span>.</p>
+        <p class="mt-2 text-sm text-white/70">Ознакомьтесь с документами или напишите нам — <span class="font-semibold text-white">цены можно узнать в чате</span>.</p>
       </div>
 
       <div class="mt-8 flex flex-col gap-4">
@@ -183,38 +273,24 @@
           <i data-lucide="arrow-up-right" class="h-5 w-5 shrink-0 text-white/70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white"></i>
         </a>
 
-        <!-- Чат MAX — цены -->
-        <a href="https://max.ru/join/QnQ8WtagyMRWXfCMUTCCNJhRqPQkKUhcb3LK-LIiM1g" target="_blank" rel="noopener" class="shine group flex items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-sky-500 to-blue-700 px-5 py-4 shadow-[0_8px_20px_-6px_rgba(37,99,235,0.6)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.75)] active:scale-[0.98]">
+        <!-- Поддержка -->
+        <a href="https://t.me/Prynik2015" target="_blank" rel="noopener" class="shine group flex items-center justify-between gap-4 rounded-xl bg-gradient-to-r from-sky-500 to-blue-700 px-5 py-4 shadow-[0_8px_20px_-6px_rgba(37,99,235,0.6)] transition-all duration-300 hover:scale-[1.02] hover:shadow-[0_12px_28px_-6px_rgba(37,99,235,0.75)] active:scale-[0.98]">
           <span class="flex items-center gap-3">
             <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-white/20 backdrop-blur-sm">
-              <i data-lucide="messages-square" class="h-5 w-5 text-white"></i>
-            </span>
-            <span>
-              <span class="block text-base font-bold text-white">ЧАТ MAX — все цены указаны здесь</span>
-              <span class="block text-xs text-white/80">Заходите в чат — весь прайс уже там</span>
-            </span>
-          </span>
-          <i data-lucide="chevron-right" class="h-5 w-5 shrink-0 text-white/80 transition-transform duration-300 group-hover:translate-x-1"></i>
-        </a>
-
-        <!-- Поддержка -->
-        <a href="https://t.me/Prynik2015" target="_blank" rel="noopener" class="group flex items-center justify-between gap-4 rounded-xl border border-white/10 bg-white/20 px-5 py-4 backdrop-blur-sm transition-all duration-300 hover:bg-white/30 hover:scale-[1.02] active:scale-[0.98]">
-          <span class="flex items-center gap-3">
-            <span class="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-emerald-500 to-teal-600 shadow-lg">
               <i data-lucide="send" class="h-5 w-5 text-white"></i>
             </span>
             <span>
               <span class="block text-base font-bold text-white">ПОДДЕРЖКА — @Prynik2015</span>
-              <span class="block text-xs text-white/70">Связь с нами — отвечаем в Telegram</span>
+              <span class="block text-xs text-white/80">Связь и актуальные цены — только в чате</span>
             </span>
           </span>
-          <i data-lucide="arrow-up-right" class="h-5 w-5 shrink-0 text-white/70 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-white"></i>
+          <i data-lucide="chevron-right" class="h-5 w-5 shrink-0 text-white/80 transition-transform duration-300 group-hover:translate-x-1"></i>
         </a>
       </div>
 
       <p class="mt-6 flex items-center justify-center gap-1.5 text-center text-xs text-white/70">
         <i data-lucide="badge-help" class="h-3.5 w-3.5"></i>
-        Все цены и наличие товаров указаны в чате MAX
+        Цены можете узнать в чате поддержки — напишите нам в Telegram
       </p>
     </div>
   </div>
@@ -237,15 +313,12 @@
       <a href="https://raw.githubusercontent.com/timys934/tmshop.github.io/refs/heads/main/UserSoglashenie?clckid=5ba60315" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-slate-400 transition-colors hover:text-white">
         <i data-lucide="file-text" class="h-4 w-4"></i>Пользовательское соглашение
       </a>
-      <a href="https://max.ru/join/QnQ8WtagyMRWXfCMUTCCNJhRqPQkKUhcb3LK-LIiM1g" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-slate-400 transition-colors hover:text-white">
-        <i data-lucide="messages-square" class="h-4 w-4"></i>Чат MAX — цены
-      </a>
       <a href="https://t.me/Prynik2015" target="_blank" rel="noopener" class="inline-flex items-center gap-1.5 text-slate-400 transition-colors hover:text-white">
         <i data-lucide="send" class="h-4 w-4"></i>Поддержка
       </a>
     </div>
 
-    <p class="text-xs text-slate-500">© <span id="year"></span> TMSHOP — магазин в мессенджере MAX. Все цены указаны в чате MAX.</p>
+    <p class="text-xs text-slate-500">© <span id="year"></span> TMSHOP — магазин в мессенджере. Цены уточняйте в чате.</p>
   </div>
 </footer>
 
