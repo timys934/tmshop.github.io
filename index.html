@@ -164,6 +164,7 @@
     <p class="receipt-desc">Укажите ваш email для связи и отправки электронного чека</p>
     
     <div class="receipt-form">
+        <!-- Поле ввода -->
         <input 
             type="email" 
             id="receiptClientEmail" 
@@ -171,12 +172,18 @@
             class="receipt-input"
             required
         >
+
+        <!-- Чёрная строка, где пишется введённая почта -->
+        <div id="emailDisplayBox" class="receipt-display" style="display: none;">
+            <span>Чек будет отправлен на:</span>
+            <strong id="displayedEmail"></strong>
+        </div>
+
         <button type="button" onclick="sendReceiptRequest()" class="receipt-btn">Подать заявку</button>
     </div>
 </div>
 
 <style>
-    /* Стили для блока (изолированы, не сломают остальной сайт) */
     .receipt-block {
         background: #ffffff;
         border: 1px solid #e1e4e8;
@@ -223,6 +230,33 @@
         border-color: #ff3344;
     }
 
+    /* ЧЁРНАЯ СТРОКА ОТОБРАЖЕНИЯ ПОЧТЫ */
+    .receipt-display {
+        background-color: #1a1a1a; /* Глубокий чёрный цвет */
+        border: 1px solid #000000;
+        border-radius: 6px;
+        padding: 10px 14px;
+        margin-bottom: 14px;
+        word-break: break-all;
+        text-align: center;
+        animation: fadeIn 0.3s ease-in-out;
+    }
+
+    .receipt-display span {
+        display: block;
+        color: #888888; /* Серый цвет поясняющего текста */
+        font-size: 12px;
+        margin-bottom: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+
+    .receipt-display strong {
+        color: #ffffff; /* Яркий белый цвет для введённой почты */
+        font-size: 15px;
+        font-weight: 600;
+    }
+
     .receipt-btn {
         width: 100%;
         background-color: #ff3344;
@@ -239,13 +273,33 @@
     .receipt-btn:hover {
         background-color: #e02434;
     }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-4px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
 </style>
 
 <script>
-    // Логика кнопки
+    const emailInput = document.getElementById('receiptClientEmail');
+    const displayBox = document.getElementById('emailDisplayBox');
+    const displayText = document.getElementById('displayedEmail');
+
+    // Показываем введённую почту в реальном времени
+    emailInput.addEventListener('input', function() {
+        const value = this.value.trim();
+        if (value.length > 0) {
+            displayBox.style.display = 'block';
+            displayText.textContent = value;
+        } else {
+            displayBox.style.display = 'none';
+            displayText.textContent = '';
+        }
+    });
+
+    // Отправка письма
     function sendReceiptRequest() {
-        const input = document.getElementById('receiptClientEmail');
-        const email = input.value.trim();
+        const email = emailInput.value.trim();
         const recipient = 'tmshopa@yandex.ru';
 
         if (!email) {
