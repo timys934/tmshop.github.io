@@ -158,7 +158,113 @@
 </style>
   </div>
 </section>
+<!-- НАЧАЛО БЛОКА: Связь и получение чека -->
+<div class="receipt-block">
+    <h3 class="receipt-title">Связь и получение чека</h3>
+    <p class="receipt-desc">Укажите ваш email для связи и отправки электронного чека</p>
+    
+    <div class="receipt-form">
+        <input 
+            type="email" 
+            id="receiptClientEmail" 
+            placeholder="Введите ваш email" 
+            class="receipt-input"
+            required
+        >
+        <button type="button" onclick="sendReceiptRequest()" class="receipt-btn">Подать заявку</button>
+    </div>
+</div>
 
+<style>
+    /* Стили для блока (изолированы, не сломают остальной сайт) */
+    .receipt-block {
+        background: #ffffff;
+        border: 1px solid #e1e4e8;
+        padding: 30px 25px;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        max-width: 420px;
+        margin: 20px auto;
+        text-align: center;
+        font-family: Arial, sans-serif;
+        box-sizing: border-box;
+    }
+
+    .receipt-block * {
+        box-sizing: border-box;
+    }
+
+    .receipt-title {
+        margin: 0 0 10px 0;
+        color: #222;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .receipt-desc {
+        font-size: 14px;
+        color: #666;
+        margin: 0 0 18px 0;
+        line-height: 1.4;
+    }
+
+    .receipt-input {
+        width: 100%;
+        padding: 12px 14px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        font-size: 15px;
+        margin-bottom: 12px;
+        outline: none;
+        transition: border-color 0.2s;
+    }
+
+    .receipt-input:focus {
+        border-color: #ff3344;
+    }
+
+    .receipt-btn {
+        width: 100%;
+        background-color: #ff3344;
+        color: white;
+        border: none;
+        padding: 12px;
+        border-radius: 6px;
+        font-size: 15px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background-color 0.2s;
+    }
+
+    .receipt-btn:hover {
+        background-color: #e02434;
+    }
+</style>
+
+<script>
+    // Логика кнопки
+    function sendReceiptRequest() {
+        const input = document.getElementById('receiptClientEmail');
+        const email = input.value.trim();
+        const recipient = 'tmshopa@yandex.ru';
+
+        if (!email) {
+            alert('Пожалуйста, введите ваш email!');
+            return;
+        }
+
+        const subject = encodeURIComponent('Связь и получение чека');
+        const body = encodeURIComponent(
+            'Здравствуйте!\n\n' +
+            'Прошу связаться со мной и отправить чек по моему заказу.\n\n' +
+            'Мой контактный email: ' + email + '\n\n' +
+            'Ожидаю ответа!'
+        );
+
+        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
+    }
+</script>
+<!-- КОНЕЦ БЛОКА -->
 <!-- ═══════════ ПРЕИМУЩЕСТВА ═══════════ -->
 <section id="features" class="relative bg-gradient-to-b from-slate-100 to-slate-200 px-6 py-12 sm:px-10">
   <div class="mx-auto max-w-5xl">
