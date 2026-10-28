@@ -134,82 +134,76 @@
               type="email"
               placeholder="you@example.com"
               class="w-full rounded-xl border-2 border-blue-200 bg-blue-50/50 px-3 py-2.5 text-sm font-semibold text-slate-800 placeholder:font-normal placeholder:text-slate-400 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200"
-              oninput="toggleBuyButton()"
+              oninput="checkEmail()"
             />
             <p id="email-error" class="hidden text-xs font-bold text-rose-500">Введите корректный e-mail</p>
           </div>
-
-          <!-- Кнопка появляется после ввода почты -->
-          <button
-            id="buy-button"
-            type="button"
-            class="product-card__buy mt-3 hidden w-full cursor-pointer rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-md shadow-blue-600/30 transition hover:bg-blue-700 active:scale-95"
-            onclick="orderProduct()"
-          >
-            Купить/заказать
-          </button>
-
-          <!-- Надпись после заказа -->
-          <p id="order-status" class="mt-3 hidden rounded-xl bg-slate-100 px-3 py-2.5 text-center text-xs font-extrabold uppercase tracking-wide text-slate-500">
-            Оплата временно недоступна
-          </p>
         </div>
       </article>
     </div>
   </div>
 
+  <!-- Всплывающее окно (предупреждение) -->
+  <div id="payment-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-blue-950/70 p-4 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-sm scale-95 rounded-2xl border border-blue-100 bg-white p-6 text-center shadow-2xl shadow-blue-900/40 transition-all duration-300" id="payment-modal-box">
+      <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-blue-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+      <h3 class="text-lg font-extrabold text-blue-900">Уведомление</h3>
+      <p class="mt-2 text-sm font-semibold text-slate-600">Временно оплата недоступна. Заказать пока нельзя.</p>
+      <button type="button" onclick="closePaymentModal()" class="mt-6 w-full rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-md shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition">
+        Понятно
+      </button>
+    </div>
+  </div>
+
   <script>
-    const PRODUCT_NAME = 'Реклама в чатах и комментариях';
-    const SELLER_EMAIL = 'tmshopa@yandex.ru';
+    let warningShown = false;
 
-    function toggleBuyButton() {
+    function checkEmail() {
       const emailInput = document.getElementById('buyer-email');
-      const buyButton = document.getElementById('buy-button');
       const error = document.getElementById('email-error');
-      const status = document.getElementById('order-status');
-
-      // Если заказ уже отправлен — кнопку не показываем
-      if (status && !status.classList.contains('hidden')) return;
 
       const value = emailInput.value.trim();
       const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 
-      if (isValid) {
-        buyButton.classList.remove('hidden');
-        error.classList.add('hidden');
+      // Показываем ошибку, если что-то введено, но невалидно
+      if (value.length > 0 && !isValid) {
+        error.classList.remove('hidden');
       } else {
-        buyButton.classList.add('hidden');
-        if (value.length > 0) {
-          error.classList.remove('hidden');
-        } else {
-          error.classList.add('hidden');
-        }
+        error.classList.add('hidden');
+      }
+
+      // Как только почта стала корректной — сразу вылетает предупреждение
+      if (isValid && !warningShown) {
+        warningShown = true;
+        openPaymentModal();
       }
     }
 
-    function orderProduct() {
-      const emailInput = document.getElementById('buyer-email');
-      const buyButton = document.getElementById('buy-button');
-      const status = document.getElementById('order-status');
-
-      const buyerEmail = emailInput.value.trim();
-      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(buyerEmail);
-      if (!isValid) return;
-
-      const subject = encodeURIComponent(`Заказ товара: ${PRODUCT_NAME}`);
-      const body = encodeURIComponent(
-        `Здравствуйте,\n\nЯ хочу заказать товар: ${PRODUCT_NAME}\n\nМои контакты: ${buyerEmail}\n\nС уважением.`
-      );
-
-      // Открываем почтовый клиент с заполненным письмом
-      window.location.href = `mailto:${SELLER_EMAIL}?subject=${subject}&body=${body}`;
-
-      // Скрываем кнопку, показываем статус
-      buyButton.classList.add('hidden');
-      emailInput.disabled = true;
-      emailInput.classList.add('opacity-60');
-      status.classList.remove('hidden');
+    function openPaymentModal() {
+      const modal = document.getElementById('payment-modal');
+      const box = document.getElementById('payment-modal-box');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      box.classList.remove('scale-95');
+      box.classList.add('scale-100');
     }
+
+    function closePaymentModal() {
+      const modal = document.getElementById('payment-modal');
+      const box = document.getElementById('payment-modal-box');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+    }
+
+    document.getElementById('payment-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePaymentModal();
+      }
+    });
   </script>
 </section>
 <!-- ═══════════ ПРЕИМУЩЕСТВА ═══════════ -->
