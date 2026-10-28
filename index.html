@@ -111,25 +111,76 @@
     </div>
 
     <div class="mt-10 grid gap-6 sm:grid-cols-3">
-      <!-- ВСТАВЛЯЙТЕ СЮДА КАРТОЧКИ ТОВАРОВ, СГЕНЕРИРОВАННЫЕ В generator.html -->
+      <!-- Карточка товара: Реклама в чатах и коментариях -->
+      <article class="product-card">
+        <div class="product-card__image">
+          <!-- фото не указано -->
+        </div>
+        <div class="product-card__body">
+          <h2 class="product-card__title">Реклама в чатах и коментариях</h2>
+          <p class="product-card__art">Артикул: 1</p>
+          <p class="product-card__price">90</p>
+          <div class="product-card__desc">
+              <p>Много рекламы </p>
+              <p>большая аудитория </p>
+              <p>заказать через макс</p>
+          </div>
+          <!-- Кнопка с вызовом окна -->
+          <button type="button" class="product-card__buy cursor-pointer" onclick="openPaymentModal()">
+            Купить/заказать
+          </button>
+        </div>
+      </article>
     </div>
-<!-- Карточка товара: Реклама в чатах и коментариях -->
-<article class="product-card">
-  <div class="product-card__image">
-    <!-- фото не указано -->
   </div>
-  <div class="product-card__body">
-    <h2 class="product-card__title">Реклама в чатах и коментариях</h2>
-    <p class="product-card__art">Артикул: 1</p>
-    <p class="product-card__price">90</p>
-    <div class="product-card__desc">
-        <p>Много рекламы </p>
-        <p>большая аудитория </p>
-        <p>заказать через макс</p>
+
+  <!-- Всплывающее окно (Модалка) -->
+  <div id="payment-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4 opacity-0 pointer-events-none transition-all duration-300">
+    <div class="relative w-full max-w-sm scale-95 rounded-2xl bg-white p-6 text-center shadow-2xl transition-all duration-300" id="payment-modal-box">
+      <!-- Иконка предупреждения -->
+      <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-amber-100 text-amber-600">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+        </svg>
+      </div>
+
+      <!-- Текст -->
+      <h3 class="text-lg font-bold text-slate-900">Уведомление</h3>
+      <p class="mt-2 text-sm font-medium text-slate-600">Временно оплата недоступна</p>
+
+      <!-- Кнопка закрытия -->
+      <button type="button" onclick="closePaymentModal()" class="mt-6 w-full rounded-xl bg-slate-900 px-4 py-2.5 text-sm font-semibold text-white shadow hover:bg-slate-800 active:scale-95 transition">
+        Понятно
+      </button>
     </div>
-    <a class="product-card__buy" href="https://max.ru/join/-sh-scDoOv2dq8boxJIqBKGX9Jd1U0BdAMsx_zBdpnE" target="_blank" rel="noopener">Купить</a>
   </div>
-</article>
+
+  <!-- Скрипт открытия/закрытия окна -->
+  <script>
+    function openPaymentModal() {
+      const modal = document.getElementById('payment-modal');
+      const box = document.getElementById('payment-modal-box');
+      modal.classList.remove('opacity-0', 'pointer-events-none');
+      box.classList.remove('scale-95');
+      box.classList.add('scale-100');
+    }
+
+    function closePaymentModal() {
+      const modal = document.getElementById('payment-modal');
+      const box = document.getElementById('payment-modal-box');
+      modal.classList.add('opacity-0', 'pointer-events-none');
+      box.classList.remove('scale-100');
+      box.classList.add('scale-95');
+    }
+
+    // Закрытие при клике на фон вокруг окна
+    document.getElementById('payment-modal').addEventListener('click', function(e) {
+      if (e.target === this) {
+        closePaymentModal();
+      }
+    });
+  </script>
+</section>
 
 <style>
 .product-card{
