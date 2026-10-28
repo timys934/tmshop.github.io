@@ -107,26 +107,45 @@
       <span class="inline-flex items-center gap-1.5 rounded-full border border-blue-800/20 bg-white px-3 py-1 text-[10px] font-bold uppercase tracking-wide text-blue-600 shadow-sm">
         <i data-lucide="package" class="h-3 w-3"></i> Каталог
       </span>
-      <h2 class="mt-2 text-3xl font-extrabold tracking-tight text-blue-900 sm:text-4xl">Товары</h2>
+      <h2 class="mt-2 bg-gradient-to-r from-blue-700 via-blue-500 to-cyan-500 bg-clip-text text-3xl font-extrabold tracking-tight text-transparent sm:text-4xl">Товары</h2>
     </div>
 
     <div class="mt-10 grid gap-6 sm:grid-cols-3">
-      <!-- Карточка товара: Реклама в чатах и коментариях -->
-      <article class="product-card overflow-hidden rounded-2xl border border-blue-200 bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-200/60">
-        <div class="product-card__image h-40 bg-gradient-to-br from-blue-500 to-blue-700">
-          <!-- фото не указано -->
+      <!-- Карточка товара -->
+      <article class="product-card group overflow-hidden rounded-2xl border border-blue-200 bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl hover:shadow-blue-200/60">
+        <div class="product-card__image relative h-40 bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700">
+          <span class="absolute right-3 top-3 rounded-full bg-white/90 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wide text-blue-700 shadow">Хит</span>
         </div>
         <div class="product-card__body p-5">
-          <h2 class="product-card__title text-lg font-bold text-blue-900">Реклама в чатах и коментариях</h2>
-          <p class="product-card__art mt-1 text-xs font-medium uppercase tracking-wide text-blue-500">Артикул: 1</p>
+          <h2 class="product-card__title text-lg font-extrabold text-blue-900">Реклама в чатах и комментариях</h2>
+          <p class="product-card__art mt-1 text-xs font-bold uppercase tracking-wide text-blue-500">Артикул: 1</p>
           <p class="product-card__price mt-2 text-2xl font-extrabold text-blue-700">90 ₽</p>
-          <div class="product-card__desc mt-3 space-y-1 text-sm text-slate-600">
-              <p>Много рекламы </p>
-              <p>большая аудитория </p>
-              <p>заказать через макс</p>
+          <div class="product-card__desc mt-3 space-y-1 text-sm font-semibold text-slate-600">
+              <p>Много рекламы</p>
+              <p>Большая аудитория</p>
+              <p>Заказать через макс</p>
           </div>
-          <!-- Кнопка с вызовом окна -->
-          <button type="button" class="product-card__buy mt-5 w-full cursor-pointer rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-600/30 transition hover:bg-blue-700 active:scale-95" onclick="openPaymentModal()">
+
+          <!-- Форма ввода почты -->
+          <div class="mt-5 space-y-2">
+            <label for="buyer-email" class="block text-xs font-extrabold uppercase tracking-wide text-blue-700">Ваша почта</label>
+            <input
+              id="buyer-email"
+              type="email"
+              placeholder="you@example.com"
+              class="w-full rounded-xl border-2 border-blue-200 bg-blue-50/50 px-3 py-2.5 text-sm font-semibold text-slate-800 placeholder:font-normal placeholder:text-slate-400 outline-none transition focus:border-blue-500 focus:bg-white focus:ring-2 focus:ring-blue-200"
+              oninput="toggleBuyButton()"
+            />
+            <p id="email-error" class="hidden text-xs font-bold text-rose-500">Введите корректный e-mail</p>
+          </div>
+
+          <!-- Кнопка появляется после ввода почты -->
+          <button
+            id="buy-button"
+            type="button"
+            class="product-card__buy mt-3 hidden w-full cursor-pointer rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-md shadow-blue-600/30 transition hover:bg-blue-700 active:scale-95"
+            onclick="openPaymentModal()"
+          >
             Купить/заказать
           </button>
         </div>
@@ -137,26 +156,43 @@
   <!-- Всплывающее окно (Модалка) -->
   <div id="payment-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-blue-950/70 p-4 opacity-0 pointer-events-none transition-all duration-300">
     <div class="relative w-full max-w-sm scale-95 rounded-2xl border border-blue-100 bg-white p-6 text-center shadow-2xl shadow-blue-900/40 transition-all duration-300" id="payment-modal-box">
-      <!-- Иконка предупреждения -->
       <div class="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-blue-100 text-blue-600">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
           <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
         </svg>
       </div>
-
-      <!-- Текст -->
-      <h3 class="text-lg font-bold text-blue-900">Уведомление</h3>
-      <p class="mt-2 text-sm font-medium text-slate-600">Временно оплата недоступна</p>
-
-      <!-- Кнопка закрытия -->
-      <button type="button" onclick="closePaymentModal()" class="mt-6 w-full rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-md shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition">
+      <h3 class="text-lg font-extrabold text-blue-900">Уведомление</h3>
+      <p class="mt-2 text-sm font-semibold text-slate-600">Временно оплата недоступна</p>
+      <button type="button" onclick="closePaymentModal()" class="mt-6 w-full rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-extrabold text-white shadow-md shadow-blue-600/30 hover:bg-blue-700 active:scale-95 transition">
         Понятно
       </button>
     </div>
   </div>
 
-  <!-- Скрипт открытия/закрытия окна -->
   <script>
+    // Показ кнопки только после корректного e-mail
+    function toggleBuyButton() {
+      const emailInput = document.getElementById('buyer-email');
+      const buyButton = document.getElementById('buy-button');
+      const error = document.getElementById('email-error');
+
+      const value = emailInput.value.trim();
+      const isValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+
+      if (isValid) {
+        buyButton.classList.remove('hidden');
+        error.classList.add('hidden');
+      } else {
+        buyButton.classList.add('hidden');
+        // Показываем ошибку только если что-то введено, но невалидно
+        if (value.length > 0) {
+          error.classList.remove('hidden');
+        } else {
+          error.classList.add('hidden');
+        }
+      }
+    }
+
     function openPaymentModal() {
       const modal = document.getElementById('payment-modal');
       const box = document.getElementById('payment-modal-box');
@@ -173,7 +209,6 @@
       box.classList.add('scale-95');
     }
 
-    // Закрытие при клике на фон вокруг окна
     document.getElementById('payment-modal').addEventListener('click', function(e) {
       if (e.target === this) {
         closePaymentModal();
@@ -181,167 +216,6 @@
     });
   </script>
 </section>
-<!-- НАЧАЛО БЛОКА: Связь и получение чека -->
-<div class="receipt-block">
-    <h3 class="receipt-title">Связь и получение чека</h3>
-    <p class="receipt-desc">Укажите ваш email для связи и отправки электронного чека</p>
-    
-    <div class="receipt-form">
-        <!-- Поле ввода -->
-        <input 
-            type="email" 
-            id="receiptClientEmail" 
-            placeholder="Введите ваш email" 
-            class="receipt-input"
-            required
-        >
-
-        <!-- Чёрная строка, где пишется введённая почта -->
-        <div id="emailDisplayBox" class="receipt-display" style="display: none;">
-            <span>Чек будет отправлен на:</span>
-            <strong id="displayedEmail"></strong>
-        </div>
-
-        <button type="button" onclick="sendReceiptRequest()" class="receipt-btn">Подать заявку</button>
-    </div>
-</div>
-
-<style>
-    .receipt-block {
-        background: #ffffff;
-        border: 1px solid #e1e4e8;
-        padding: 30px 25px;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-        max-width: 420px;
-        margin: 20px auto;
-        text-align: center;
-        font-family: Arial, sans-serif;
-        box-sizing: border-box;
-    }
-
-    .receipt-block * {
-        box-sizing: border-box;
-    }
-
-    .receipt-title {
-        margin: 0 0 10px 0;
-        color: #222;
-        font-size: 20px;
-        font-weight: bold;
-    }
-
-    .receipt-desc {
-        font-size: 14px;
-        color: #666;
-        margin: 0 0 18px 0;
-        line-height: 1.4;
-    }
-
-    .receipt-input {
-        width: 100%;
-        padding: 12px 14px;
-        border: 1px solid #ccc;
-        border-radius: 6px;
-        font-size: 15px;
-        margin-bottom: 12px;
-        outline: none;
-        transition: border-color 0.2s;
-    }
-
-    .receipt-input:focus {
-        border-color: #ff3344;
-    }
-
-    /* ЧЁРНАЯ СТРОКА ОТОБРАЖЕНИЯ ПОЧТЫ */
-    .receipt-display {
-        background-color: #1a1a1a; /* Глубокий чёрный цвет */
-        border: 1px solid #000000;
-        border-radius: 6px;
-        padding: 10px 14px;
-        margin-bottom: 14px;
-        word-break: break-all;
-        text-align: center;
-        animation: fadeIn 0.3s ease-in-out;
-    }
-
-    .receipt-display span {
-        display: block;
-        color: #888888; /* Серый цвет поясняющего текста */
-        font-size: 12px;
-        margin-bottom: 3px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-
-    .receipt-display strong {
-        color: #ffffff; /* Яркий белый цвет для введённой почты */
-        font-size: 15px;
-        font-weight: 600;
-    }
-
-    .receipt-btn {
-        width: 100%;
-        background-color: #ff3344;
-        color: white;
-        border: none;
-        padding: 12px;
-        border-radius: 6px;
-        font-size: 15px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background-color 0.2s;
-    }
-
-    .receipt-btn:hover {
-        background-color: #e02434;
-    }
-
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(-4px); }
-        to { opacity: 1; transform: translateY(0); }
-    }
-</style>
-
-<script>
-    const emailInput = document.getElementById('receiptClientEmail');
-    const displayBox = document.getElementById('emailDisplayBox');
-    const displayText = document.getElementById('displayedEmail');
-
-    // Показываем введённую почту в реальном времени
-    emailInput.addEventListener('input', function() {
-        const value = this.value.trim();
-        if (value.length > 0) {
-            displayBox.style.display = 'block';
-            displayText.textContent = value;
-        } else {
-            displayBox.style.display = 'none';
-            displayText.textContent = '';
-        }
-    });
-
-    // Отправка письма
-    function sendReceiptRequest() {
-        const email = emailInput.value.trim();
-        const recipient = 'tmshopa@yandex.ru';
-
-        if (!email) {
-            alert('Пожалуйста, введите ваш email!');
-            return;
-        }
-
-        const subject = encodeURIComponent('Связь и получение чека');
-        const body = encodeURIComponent(
-            'Здравствуйте!\n\n' +
-            'Прошу связаться со мной и отправить чек по моему заказу.\n\n' +
-            'Мой контактный email: ' + email + '\n\n' +
-            'Ожидаю ответа!'
-        );
-
-        window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`;
-    }
-</script>
-<!-- КОНЕЦ БЛОКА -->
 <!-- ═══════════ ПРЕИМУЩЕСТВА ═══════════ -->
 <section id="features" class="relative bg-gradient-to-b from-slate-100 to-slate-200 px-6 py-12 sm:px-10">
   <div class="mx-auto max-w-5xl">
