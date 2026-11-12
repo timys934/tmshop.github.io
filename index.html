@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TMSHOP — Цифровые товары и документы</title>
+    <title>TMSHOP — Реклама в чатах и комментариях</title>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
@@ -49,7 +48,7 @@
             margin-bottom: 2px; font-size: 1.05rem;
         }
 
-        /* Блок товаров */
+        /* Блок услуги */
         .store-section {
             background: #ffffff; border-radius: 20px;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
@@ -58,13 +57,11 @@
         }
         .store-section h2 {
             font-size: 1.35rem; font-weight: 700; color: #0b1c2c;
-            margin-bottom: 18px; display: flex; align-items: center;
+            margin-bottom: 6px; display: flex; align-items: center;
             gap: 10px; flex-wrap: wrap;
         }
-        .store-section h2 .badge-digital {
-            font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
-            letter-spacing: 0.5px; background: #e0f0ff; color: #1e4e8c;
-            padding: 4px 10px; border-radius: 20px;
+        .store-section .section-sub {
+            color: #6b7d8e; font-size: 0.95rem; margin-bottom: 22px;
         }
         .store-section h2 .badge-actual {
             font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
@@ -72,43 +69,132 @@
             padding: 4px 10px; border-radius: 20px;
         }
 
-        .products-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 16px;
+        /* Карточка услуги */
+        .service-card {
+            background: #f8fafd;
+            border: 1px solid #e6ecf3;
+            border-radius: 16px;
+            padding: 24px 24px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
         }
 
-        .product-card {
-            background: #f8fafd; border: 1px solid #e6ecf3;
-            border-radius: 14px; padding: 18px 16px;
-            display: flex; flex-direction: column; justify-content: space-between;
-            min-height: 160px; transition: all 0.2s ease; position: relative;
+        .service-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            gap: 16px;
+            flex-wrap: wrap;
         }
-        .product-card:hover {
-            border-color: #c5d5e8;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.04);
+
+        .service-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #0b1c2c;
+            margin-bottom: 4px;
         }
-        .product-card .digital-badge {
-            display: inline-block; font-size: 0.68rem; font-weight: 700;
-            text-transform: uppercase; letter-spacing: 0.4px;
-            background: #e0f0ff; color: #1e4e8c;
-            padding: 3px 9px; border-radius: 20px;
-            margin-bottom: 10px; width: fit-content;
+        .service-desc {
+            font-size: 0.95rem;
+            color: #5a6b7c;
+            max-width: 520px;
         }
-        .product-card .name {
-            font-weight: 600; font-size: 1rem; color: #1a1e24;
-            margin-bottom: 4px; line-height: 1.4;
+
+        .service-features {
+            list-style: none;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 8px 20px;
+            margin: 4px 0 0;
         }
-        .product-card .desc {
-            font-size: 0.85rem; color: #6b7d8e;
-            margin-bottom: 12px; line-height: 1.4;
+        .service-features li {
+            position: relative;
+            padding-left: 24px;
+            font-size: 0.95rem;
+            color: #1f2a36;
         }
-        .product-card .price {
-            font-size: 1.2rem; font-weight: 700; color: #0b1c2c;
-            margin-bottom: 10px;
+        .service-features li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #1e7a3c;
+            font-weight: 700;
         }
-        .product-card .price .currency {
-            font-size: 0.9rem; font-weight: 600; color: #5a6b7c; margin-left: 2px;
+
+        /* Тарифы */
+        .tariffs-label {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #1e4e8c;
+            margin-top: 4px;
+            padding-top: 16px;
+            border-top: 1px solid #e2e9f0;
+        }
+
+        .tariffs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 14px;
+            margin-top: 12px;
+        }
+
+        .tariff-card {
+            background: #ffffff;
+            border: 2px solid #e6ecf3;
+            border-radius: 14px;
+            padding: 18px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+        }
+        .tariff-card:hover {
+            border-color: #b8d4f8;
+            box-shadow: 0 4px 16px rgba(30, 78, 140, 0.08);
+        }
+        .tariff-card.popular {
+            border-color: #1e4e8c;
+            box-shadow: 0 4px 16px rgba(30, 78, 140, 0.12);
+        }
+        .tariff-card .popular-badge {
+            position: absolute;
+            top: -11px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e4e8c;
+            color: #ffffff;
+            font-size: 0.66rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            padding: 3px 12px;
+            border-radius: 20px;
+            white-space: nowrap;
+        }
+
+        .tariff-name {
+            font-weight: 700;
+            font-size: 1rem;
+            color: #0b1c2c;
+        }
+        .tariff-detail {
+            font-size: 0.85rem;
+            color: #6b7d8e;
+            line-height: 1.4;
+            min-height: 38px;
+        }
+        .tariff-price {
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: #0b1c2c;
+            margin-top: 2px;
+        }
+        .tariff-price .currency {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #5a6b7c;
+            margin-left: 2px;
         }
 
         /* Кнопка "Купить" с загрузкой */
@@ -120,6 +206,7 @@
             transition: background 0.2s ease; letter-spacing: 0.2px;
             display: flex; align-items: center; justify-content: center;
             gap: 8px; min-height: 42px;
+            margin-top: 4px;
         }
         .buy-btn:hover:not(:disabled) { background: #163b6b; }
         .buy-btn:disabled { cursor: default; background: #1e4e8c; }
@@ -145,16 +232,7 @@
             transition: width 0.1s linear; z-index: 1;
             border-radius: 0 0 10px 10px;
         }
-        .buy-btn.success {
-            background: #1e7a3c;
-        }
-        .buy-btn.success .spinner { display: none; }
-        .buy-btn.success .progress-bar {
-            width: 100% !important; background: #4caf50;
-        }
-        .buy-btn.info {
-            background: #8a6d00;
-        }
+        .buy-btn.info { background: #8a6d00; }
         .buy-btn.info .spinner { display: none; }
         .buy-btn.info .progress-bar {
             width: 100% !important; background: #f0c040;
@@ -163,7 +241,7 @@
         @keyframes spin { to { transform: rotate(360deg); } }
 
         .store-note-blue {
-            margin-top: 16px; font-size: 0.9rem; color: #163b6b;
+            margin-top: 18px; font-size: 0.9rem; color: #163b6b;
             background: #f0f6ff; border-radius: 10px;
             padding: 12px 16px; border: 1px dashed #a8c8f0;
         }
@@ -352,14 +430,12 @@
             .doc-card .section-title { font-size: 1.1rem; }
             .doc-card p, .doc-card ul li { font-size: 0.98rem; }
             .store-section, .auth-section { padding: 20px 18px; }
-            .products-grid { grid-template-columns: 1fr 1fr; }
+            .tariffs-grid { grid-template-columns: 1fr; }
+            .service-card { padding: 18px 16px; }
             .auth-tabs { width: 100%; }
             .auth-tab {
                 flex: 1; text-align: center; padding: 10px 12px;
             }
-        }
-        @media (max-width: 420px) {
-            .products-grid { grid-template-columns: 1fr; }
         }
 
         html { scroll-behavior: smooth; }
@@ -369,7 +445,7 @@
     <div class="container">
         <div class="header">
             <h1>TMSHOP</h1>
-            <p>Цифровые товары — актуальные цены и тарифы</p>
+            <p>Реклама в чатах и комментариях — актуальные тарифы</p>
         </div>
 
         <!-- Информационный баннер -->
@@ -377,100 +453,89 @@
             <div class="icon">ℹ️</div>
             <div class="text">
                 <strong>Оплата настраивается</strong>
-                Цены и тарифы актуальны. Оформление заказа станет доступно сразу после подключения оплаты.
+                Тарифы актуальны. Оформление заказа станет доступно сразу после подключения оплаты.
             </div>
         </div>
 
-        <!-- Цифровые товары -->
+        <!-- Услуга -->
         <div class="store-section">
-            <h2>Цифровые товары <span class="badge-actual">Актуальные цены</span> <span class="badge-digital">Digital</span></h2>
-            <div class="products-grid">
-                <div class="product-card">
+            <h2>Реклама в чатах и комментариях <span class="badge-actual">Актуальные тарифы</span></h2>
+            <div class="section-sub">Продвижение вашего продукта в тематических чатах и комментариях</div>
+
+            <div class="service-card">
+                <div class="service-top">
                     <div>
-                        <span class="digital-badge">Ключ</span>
-                        <div class="name">Steam Wallet 1000 ₽</div>
-                        <div class="desc">Код пополнения кошелька Steam</div>
+                        <div class="service-title">Реклама в чатах и комментариях</div>
+                        <div class="service-desc">
+                            Размещение рекламных сообщений в тематических чатах и комментариях.
+                            Живая аудитория, естественная подача, отчёт по каждому размещению.
+                        </div>
                     </div>
-                    <div class="price">1 090 <span class="currency">₽</span></div>
-                    <button class="buy-btn" data-product="Steam Wallet 1000 ₽">
-                        <span class="spinner"></span>
-                        <span class="btn-label">Купить</span>
-                        <span class="progress-bar"></span>
-                    </button>
                 </div>
 
-                <div class="product-card">
-                    <div>
-                        <span class="digital-badge">Подписка</span>
-                        <div class="name">Telegram Premium 3 мес.</div>
-                        <div class="desc">Активация на ваш аккаунт</div>
-                    </div>
-                    <div class="price">899 <span class="currency">₽</span></div>
-                    <button class="buy-btn" data-product="Telegram Premium 3 мес.">
-                        <span class="spinner"></span>
-                        <span class="btn-label">Купить</span>
-                        <span class="progress-bar"></span>
-                    </button>
-                </div>
+                <ul class="service-features">
+                    <li>Подбор чатов под вашу тематику</li>
+                    <li>Согласование текста сообщения</li>
+                    <li>Отчёт со скринами и ссылками</li>
+                    <li>Срок размещения — до 30 дней</li>
+                </ul>
 
-                <div class="product-card">
-                    <div>
-                        <span class="digital-badge">Ключ</span>
-                        <div class="name">Windows 11 Pro</div>
-                        <div class="desc">Электронный лицензионный ключ</div>
-                    </div>
-                    <div class="price">2 490 <span class="currency">₽</span></div>
-                    <button class="buy-btn" data-product="Windows 11 Pro">
-                        <span class="spinner"></span>
-                        <span class="btn-label">Купить</span>
-                        <span class="progress-bar"></span>
-                    </button>
-                </div>
+                <div class="tariffs-label">Тарифы</div>
 
-                <div class="product-card">
-                    <div>
-                        <span class="digital-badge">Подписка</span>
-                        <div class="name">Яндекс Плюс 12 мес.</div>
-                        <div class="desc">Промокод на год подписки</div>
+                <div class="tariffs-grid">
+                    <!-- Тариф 1 -->
+                    <div class="tariff-card">
+                        <div class="tariff-name">Старт</div>
+                        <div class="tariff-detail">5 размещений в чатах / 10 комментариев</div>
+                        <div class="tariff-price">1 490 <span class="currency">₽</span></div>
+                        <button class="buy-btn" data-product="Реклама — Старт">
+                            <span class="spinner"></span>
+                            <span class="btn-label">Купить</span>
+                            <span class="progress-bar"></span>
+                        </button>
                     </div>
-                    <div class="price">3 290 <span class="currency">₽</span></div>
-                    <button class="buy-btn" data-product="Яндекс Плюс 12 мес.">
-                        <span class="spinner"></span>
-                        <span class="btn-label">Купить</span>
-                        <span class="progress-bar"></span>
-                    </button>
-                </div>
 
-                <div class="product-card">
-                    <div>
-                        <span class="digital-badge">Ключ</span>
-                        <div class="name">Discord Nitro 1 мес.</div>
-                        <div class="desc">Цифровой код активации</div>
+                    <!-- Тариф 2 -->
+                    <div class="tariff-card popular">
+                        <div class="popular-badge">Популярный</div>
+                        <div class="tariff-name">Оптимальный</div>
+                        <div class="tariff-detail">15 размещений в чатах / 30 комментариев</div>
+                        <div class="tariff-price">3 990 <span class="currency">₽</span></div>
+                        <button class="buy-btn" data-product="Реклама — Оптимальный">
+                            <span class="spinner"></span>
+                            <span class="btn-label">Купить</span>
+                            <span class="progress-bar"></span>
+                        </button>
                     </div>
-                    <div class="price">490 <span class="currency">₽</span></div>
-                    <button class="buy-btn" data-product="Discord Nitro 1 мес.">
-                        <span class="spinner"></span>
-                        <span class="btn-label">Купить</span>
-                        <span class="progress-bar"></span>
-                    </button>
-                </div>
 
-                <div class="product-card">
-                    <div>
-                        <span class="digital-badge">Доступ</span>
-                        <div class="name">Онлайн-курс «Digital Start»</div>
-                        <div class="desc">Доступ к видеоурокам на 6 мес.</div>
+                    <!-- Тариф 3 -->
+                    <div class="tariff-card">
+                        <div class="tariff-name">Максимум</div>
+                        <div class="tariff-detail">40 размещений в чатах / 80 комментариев</div>
+                        <div class="tariff-price">8 990 <span class="currency">₽</span></div>
+                        <button class="buy-btn" data-product="Реклама — Максимум">
+                            <span class="spinner"></span>
+                            <span class="btn-label">Купить</span>
+                            <span class="progress-bar"></span>
+                        </button>
                     </div>
-                    <div class="price">1 990 <span class="currency">₽</span></div>
-                    <button class="buy-btn" data-product="Онлайн-курс «Digital Start»">
-                        <span class="spinner"></span>
-                        <span class="btn-label">Купить</span>
-                        <span class="progress-bar"></span>
-                    </button>
+
+                    <!-- Тариф 4 -->
+                    <div class="tariff-card">
+                        <div class="tariff-name">Индивидуальный</div>
+                        <div class="tariff-detail">Объём и площадки под ваш запрос</div>
+                        <div class="tariff-price">от 12 990 <span class="currency">₽</span></div>
+                        <button class="buy-btn" data-product="Реклама — Индивидуальный">
+                            <span class="spinner"></span>
+                            <span class="btn-label">Купить</span>
+                            <span class="progress-bar"></span>
+                        </button>
+                    </div>
                 </div>
             </div>
+
             <div class="store-note-blue">
-                💡 После подключения оплаты цифровые товары будут выдаваться автоматически в чате TMSHOP в Max.
+                💡 После подключения оплаты заказы будут приниматься автоматически, а отчёты — приходить в чат TMSHOP в Max.
             </div>
         </div>
 
@@ -588,7 +653,7 @@
             <div class="section-title" id="p-3">3. Цели обработки данных</div>
             <p>Оператор обрабатывает персональные данные в целях:</p>
             <ul>
-                <li>Оформления и исполнения договора купли-продажи (связь с вами, выдача цифрового товара);</li>
+                <li>Оформления и исполнения договора купли-продажи (связь с вами, оказание услуги);</li>
                 <li>Информирования о статусе заказа и ответов на запросы;</li>
                 <li>Обработки обращений, возвратов и претензий;</li>
                 <li>Улучшения работы Магазина (анализ обращений и качества сервиса);</li>
@@ -603,7 +668,7 @@
             <div class="section-title" id="p-5">5. Условия обработки и передачи данных</div>
             <p><span class="num">5.1.</span> Оператор не продаёт и не передаёт персональные данные третьим лицам, кроме случаев:</p>
             <ul>
-                <li>Выдачи цифрового товара (передача данных платёжному сервису и сервису выдачи ключей);</li>
+                <li>Оказания услуги (передача данных платёжному сервису и партнёрским площадкам размещения);</li>
                 <li>Проведения платежа (передача данных платёжному сервису);</li>
                 <li>Требования законодательства РФ (по запросу уполномоченных органов).</li>
             </ul>
@@ -628,7 +693,7 @@
             <p><span class="num">7.2.</span> При этом ни один способ передачи данных через интернет не является абсолютно безопасным. Вы передаёте данные на свой риск.</p>
 
             <div class="section-title" id="p-8">8. Отказ от ответственности</div>
-            <p><span class="num">8.1.</span> Оператор не контролирует и не несёт ответственности за содержание, политику конфиденциальности и действия мессенджера Max, а также иных третьих лиц (платёжных сервисов, сервисов выдачи ключей, хостинг-провайдеров), ссылки на которые могут присутствовать в Магазине. Их обработка данных регулируется их собственными документами.</p>
+            <p><span class="num">8.1.</span> Оператор не контролирует и не несёт ответственности за содержание, политику конфиденциальности и действия мессенджера Max, а также иных третьих лиц (платёжных сервисов, площадок размещения, хостинг-провайдеров), ссылки на которые могут присутствовать в Магазине. Их обработка данных регулируется их собственными документами.</p>
             <p><span class="num">8.2.</span> Оператор не несёт ответственности за последствия, вызванные предоставлением Пользователем недостоверных, неполных или устаревших данных, а также за невозможность связи с Пользователем по указанным им контактам.</p>
             <p><span class="num">8.3.</span> Оператор не несёт ответственности за временные технические сбои в работе Мессенджера, каналов связи и оборудования, произошедшие не по вине Оператора, и за связанные с ними задержки в обработке заказов и сообщений.</p>
             <p><span class="num">8.4.</span> Оператор не несёт ответственности за неправомерные действия третьих лиц, в том числе за несанкционированный доступ к данным Пользователя, произошедший вследствие компрометации учётной записи Пользователя в Мессенджере (утрата устройства, передача доступа третьим лицам, слабый пароль и т.п.).</p>
@@ -658,7 +723,7 @@
             <p>Используя Мессенджер для взаимодействия с TMSHOP (просмотр каталога, оформление заказа, переписка, переход по ссылкам), вы подтверждаете, что ознакомились с условиями Соглашения и принимаете их в полном объёме.</p>
 
             <div class="section-title" id="a-1">1. Общие положения</div>
-            <p><span class="num">1.1.</span> Соглашение является публичной офертой в соответствии со ст. 437 ГК РФ. Оформление заказа означает акцепт оферты (ст. 438 ГК РФ) и заключение договора купли-продажи на условиях Соглашения.</p>
+            <p><span class="num">1.1.</span> Соглашение является публичной офертой в соответствии со ст. 437 ГК РФ. Оформление заказа означает акцепт оферты (ст. 438 ГК РФ) и заключение договора оказания услуг на условиях Соглашения.</p>
             <p><span class="num">1.2.</span> Соглашение применяется только к взаимодействию с TMSHOP в Мессенджере Max. Администрация не контролирует и не несёт ответственности за сервисы и сайты третьих лиц, на которые могут вести ссылки из Магазина.</p>
             <p><span class="num">1.3.</span> Администрация вправе изменять Соглашение в одностороннем порядке. Новая редакция вступает в силу с момента публикации в Магазине, если иное не указано. Продолжение использования Магазина после публикации означает согласие с изменениями.</p>
             <p><span class="num">1.4.</span> Актуальная версия Соглашения всегда доступна в закреплённом сообщении чата TMSHOP.</p>
@@ -667,20 +732,20 @@
             <ul>
                 <li><strong>Магазин</strong> — TMSHOP, торговая точка, представленная в мессенджере Max.</li>
                 <li><strong>Пользователь</strong> — физическое лицо, взаимодействующее с Магазином через Мессенджер.</li>
-                <li><strong>Цифровой товар</strong> — продукция, представленная к продаже в Магазине в электронном виде (ключи, подписки, доступы).</li>
-                <li><strong>Заказ</strong> — оформленный Пользователем запрос на приобретение Цифрового товара.</li>
+                <li><strong>Услуга</strong> — реклама в чатах и комментариях, предоставляемая Магазином.</li>
+                <li><strong>Заказ</strong> — оформленный Пользователем запрос на приобретение Услуги.</li>
                 <li><strong>Мессенджер</strong> — мессенджер Max.</li>
             </ul>
 
             <div class="section-title" id="a-3">3. Предмет соглашения</div>
             <p><span class="num">3.1.</span> Администрация предоставляет Пользователю возможность:</p>
             <ul>
-                <li>знакомиться с информацией о Цифровых товарах;</li>
+                <li>знакомиться с информацией об Услуге и тарифах;</li>
                 <li>оформлять Заказы;</li>
                 <li>получать консультации и поддержку;</li>
                 <li>получать информацию о статусе Заказа.</li>
             </ul>
-            <p><span class="num">3.2.</span> Соглашение не является договором купли-продажи в части описания Цифрового товара. Договор купли-продажи считается заключённым с момента подтверждения Заказа Администрацией.</p>
+            <p><span class="num">3.2.</span> Соглашение не является договором оказания услуг в части описания Услуги. Договор считается заключённым с момента подтверждения Заказа Администрацией.</p>
 
             <div class="section-title" id="a-4">4. Права и обязанности Пользователя</div>
             <p><span class="num">4.1.</span> Пользователь обязуется:</p>
@@ -688,11 +753,11 @@
                 <li>предоставлять достоверные, полные и актуальные данные при оформлении Заказа;</li>
                 <li>не использовать Магазин для противоправных действий, спама, мошенничества, распространения вредоносного контента;</li>
                 <li>не нарушать работу Магазина и Мессенджера;</li>
-                <li>своевременно оплачивать Заказы и принимать Цифровые товары.</li>
+                <li>своевременно оплачивать Заказы и принимать Услугу.</li>
             </ul>
             <p><span class="num">4.2.</span> Пользователь вправе:</p>
             <ul>
-                <li>получать информацию о Цифровых товарах и условиях их приобретения;</li>
+                <li>получать информацию об Услуге и условиях её приобретения;</li>
                 <li>оформлять Заказы;</li>
                 <li>обращаться в поддержку Магазина;</li>
                 <li>реализовывать права, предусмотренные законодательством РФ, включая Закон «О защите прав потребителей».</li>
@@ -702,27 +767,27 @@
             <div class="section-title" id="a-5">5. Права и обязанности Администрации</div>
             <p><span class="num">5.1.</span> Администрация обязуется:</p>
             <ul>
-                <li>предоставлять Пользователю информацию о Цифровых товарах и условиях их приобретения;</li>
+                <li>предоставлять Пользователю информацию об Услуге и условиях её приобретения;</li>
                 <li>обрабатывать Заказы и сообщения в разумные сроки;</li>
                 <li>соблюдать конфиденциальность персональных данных в соответствии с Политикой конфиденциальности.</li>
             </ul>
             <p><span class="num">5.2.</span> Администрация вправе:</p>
             <ul>
-                <li>изменять ассортимент, цены и условия продажи Цифровых товаров;</li>
+                <li>изменять тарифы и условия оказания Услуги;</li>
                 <li>отказать в оформлении Заказа или ограничить доступ Пользователя при нарушении им условий Соглашения;</li>
                 <li>приостанавливать работу Магазина для технического обслуживания.</li>
             </ul>
             <p><span class="num">5.3.</span> Администрация не проверяет достоверность данных, предоставляемых Пользователем.</p>
 
             <div class="section-title" id="a-6">6. Порядок оформления и оплаты Заказа</div>
-            <p><span class="num">6.1.</span> Заказ оформляется путём направления сообщения в чат TMSHOP с указанием Цифрового товара и необходимых данных.</p>
-            <p><span class="num">6.2.</span> Администрация подтверждает Заказ, уточняет состав, стоимость и условия выдачи.</p>
+            <p><span class="num">6.1.</span> Заказ оформляется путём направления сообщения в чат TMSHOP с указанием Услуги, тарифа и необходимых данных.</p>
+            <p><span class="num">6.2.</span> Администрация подтверждает Заказ, уточняет состав, стоимость и условия оказания.</p>
             <p><span class="num">6.3.</span> Оплата производится способами, указанными в Магазине, через сторонние платёжные сервисы. Администрация не хранит полные реквизиты банковских карт.</p>
-            <p><span class="num">6.4.</span> Цены на Цифровые товары указываются в рублях РФ и могут изменяться до момента подтверждения Заказа.</p>
+            <p><span class="num">6.4.</span> Цены на Услугу указываются в рублях РФ и могут изменяться до момента подтверждения Заказа.</p>
 
-            <div class="section-title" id="a-7">7. Выдача и возврат</div>
-            <p><span class="num">7.1.</span> Условия и сроки выдачи Цифрового товара согласовываются при подтверждении Заказа.</p>
-            <p><span class="num">7.2.</span> Возврат Цифрового товара надлежащего и ненадлежащего качества осуществляется в соответствии с Законом РФ «О защите прав потребителей» с учётом особенностей цифровых товаров.</p>
+            <div class="section-title" id="a-7">7. Оказание услуги и возврат</div>
+            <p><span class="num">7.1.</span> Условия и сроки оказания Услуги согласовываются при подтверждении Заказа.</p>
+            <p><span class="num">7.2.</span> Возврат средств осуществляется в соответствии с Законом РФ «О защите прав потребителей» с учётом фактически оказанного объёма Услуги.</p>
             <p><span class="num">7.3.</span> Для оформления возврата Пользователь обращается в чат TMSHOP.</p>
 
             <div class="section-title" id="a-8">8. Интеллектуальная собственность</div>
@@ -730,7 +795,7 @@
             <p><span class="num">8.2.</span> Использование материалов Магазина без разрешения Администрации не допускается.</p>
 
             <div class="section-title" id="a-9">9. Отказ от ответственности</div>
-            <p><span class="num">9.1.</span> Администрация не контролирует и не несёт ответственности за содержание, политику и действия мессенджера Max, а также иных третьих лиц (платёжных сервисов, сервисов выдачи ключей, хостинг-провайдеров), ссылки на которые могут присутствовать в Магазине. Их работа регулируется их собственными документами.</p>
+            <p><span class="num">9.1.</span> Администрация не контролирует и не несёт ответственности за содержание, политику и действия мессенджера Max, а также иных третьих лиц (платёжных сервисов, площадок размещения, хостинг-провайдеров), ссылки на которые могут присутствовать в Магазине. Их работа регулируется их собственными документами.</p>
             <p><span class="num">9.2.</span> Администрация не несёт ответственности за последствия, вызванные предоставлением Пользователем недостоверных, неполных или устаревших данных, а также за невозможность связи с Пользователем по указанным им контактам.</p>
             <p><span class="num">9.3.</span> Администрация не несёт ответственности за временные технические сбои в работе Мессенджера, каналов связи и оборудования, произошедшие не по вине Администрации, и за связанные с ними задержки в обработке Заказов и сообщений.</p>
             <p><span class="num">9.4.</span> Администрация не несёт ответственности за неправомерные действия третьих лиц, в том числе за несанкционированный доступ к данным Пользователя, произошедший вследствие компрометации учётной записи Пользователя в Мессенджере (утрата устройства, передача доступа третьим лицам, слабый пароль и т.п.).</p>
@@ -1086,4 +1151,3 @@
     </script>
 </body>
 </html>
-```
